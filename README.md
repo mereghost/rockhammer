@@ -2,6 +2,7 @@ Rockhammer
 ====
 
 The idea of this slow moving project is to provide a really fast rubygems server.
+(Note: and to learn how Rubygems & Bundler really work)
 
 The feature list should include:
 

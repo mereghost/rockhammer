@@ -20,6 +20,8 @@ build/
 /doc/
 /rdoc/
 
+.idea
+
 ## Environment normalisation:
 /.bundle/
 /lib/bundler/man/

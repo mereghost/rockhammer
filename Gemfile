@@ -1,4 +1,10 @@
-# A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-# gem "rails"
+group :test do
+  gem 'rspec'
+  gem 'simplecov'
+  gem 'rubocop'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+end
