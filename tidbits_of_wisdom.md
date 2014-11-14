@@ -11,3 +11,23 @@
     - There's an index for prerelease, released and latest (only the current versions of all gems)
     - For the quick index, the takes gemspec adds the .rz and Marshal dumps a deflated version of it on the /quick/ subdir
         + Not sure of it's use yet
+    - I can probably cache the abbreviated specs somewhere (DB?) and feed them directly to the indexer in some way.
+        + Since it operates over Gem::Specification I'd probably need to use add_specs to feed it all the gems.
+        + Or I'll have to reimplement the indexer which leads to brittle everything is Rubygems changes.
+        - Check the approach adopted by Rubygems.org to indexing. They probably cache this data somehow.
+        - If the cached object keeps the contract, seems that Gem::Specification could care less.
+3.  Generate the index as a queued job since it can take a few seconds to run?
+
+
+###API URIs
+
+1. Check the URIs needed for both rubygems and bundler.
+    2. Install:
+        3. first of all it hits the /api/v1/dependencies using HEAD (gem) or GET (bundler), the response is a simple 200 OK
+        3. Next it asks the dependency list of the needed gems using /api/v1/dependencies?gem=GEM_LIST
+            + Returns an Array of Hashes with the name, (version) number, platform and dependencies for the requested list
+            + Basically it just matches the gem names and return every dependency of all versions of said gems.
+            + It could be solved with a quick DB query for exact name match as unknown gems could be a factor
+        3. It then proceed to download the .gem and the gemspec.rz files and installs it.
+        3. There are the /Marshal.4.8 and the /quick/Marshal... paths that are used to get the deflated gemspec and the .gems (or so it seems)
+

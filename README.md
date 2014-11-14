@@ -6,9 +6,9 @@ The idea of this slow moving project is to provide a really fast rubygems server
 
 The feature list should include:
 
-- Proxy to Rubygems.org
 - S3 backend
-- Nifty UI
-- Blazing fast search (both for rubygems and UI)
 - Some admin interface to keep things clean.
+- Proxy to Rubygems.org
 - Maybe some user data.
+- Blazing fast search (both for rubygems and UI)
+- Nifty UI
